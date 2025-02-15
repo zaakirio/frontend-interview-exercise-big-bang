@@ -1,6 +1,6 @@
 export type Choice = 'Rock' | 'Paper' | 'Scissors' | 'Lizard' | 'Spock';
 
-export type GameChoice = {
+export interface GameChoice {
   name: Choice;
   beats: Choice[];
   icon: string;
@@ -8,7 +8,7 @@ export type GameChoice = {
 
 export type GameResult = 'win' | 'lose' | 'tie';
 
-export type GameState = {
+export interface GameState {
   userChoice: Choice | null;
   computerChoice: Choice | null;
   result: string;
@@ -18,14 +18,14 @@ export type GameState = {
   };
 };
 
-export type GameHistoryEntry = {
+export interface GameHistoryEntry {
   userChoice: Choice;
   computerChoice: Choice;
   result: GameResult;
   timestamp: number;
 };
 
-export type Player = {
+export interface Player {
   username: string;
   avatar?: string;
 };
