@@ -1,18 +1,21 @@
-import automataLogo from '../assets/automata.png'
-import './App.css'
+import { GameBoard } from "@/components/Game/GameBoard";
+import { UsernameForm } from "@/components/Game/UsernameForm";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { Player } from "@/types/game";
 
-function App() {
+
+const App: React.FC = () => {
+  const [player, setPlayer] = useLocalStorage<Player | null>('player', null);
+
   return (
-    <>
-      <div>
-        <a href="https://automata.tech/" target="_blank">
-          <img src={String(automataLogo)} className="logo automata" alt="Automata logo"/>
-        </a>
-      </div>
-      <h1>Frontend Exercise</h1>
-      <h2>Rock, Paper, Scissors, Lizard, Spock</h2>
-    </>
-  )
-}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+      {!player ? (
+        <UsernameForm onSubmit={setPlayer} />
+      ) : (
+        <GameBoard player={player} />
+      )}
+    </div>
+  );
+};
 
-export default App
+export default App;
