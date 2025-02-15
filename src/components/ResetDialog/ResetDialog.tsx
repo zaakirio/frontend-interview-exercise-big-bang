@@ -10,13 +10,13 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-interface ResetConfirmationProps {
+interface ResetDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onConfirm: () => void;
 }
 
-export const ResetConfirmation: React.FC<ResetConfirmationProps> = ({
+export const ResetDialog: React.FC<ResetDialogProps> = ({
   open,
   onOpenChange,
   onConfirm,
