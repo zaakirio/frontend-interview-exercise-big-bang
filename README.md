@@ -47,12 +47,8 @@ npm install -g pnpm
 pnpm install
 ```
 
-2. Run Application:
+2. Start the development server:
 ```bash
 pnpm dev
 ```
 
-3. Start the development server:
-```bash
-pnpm dev
-```
