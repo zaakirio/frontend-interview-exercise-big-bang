@@ -1,4 +1,5 @@
 export type Choice = 'Rock' | 'Paper' | 'Scissors' | 'Lizard' | 'Spock';
+export type GameOutcome = 'win' | 'lose' | 'tie';
 
 export interface GameChoice {
   name: Choice;
@@ -6,13 +7,11 @@ export interface GameChoice {
   icon: string;
 };
 
-export type GameResult = 'win' | 'lose' | 'tie';
-
 export interface GameState {
   userChoice: Choice | null;
   computerChoice: Choice | null;
   result: string;
-  resultType: GameResult | null;
+  resultType: GameOutcome | null;
   scores: {
     user: number;
     computer: number;
@@ -22,7 +21,7 @@ export interface GameState {
 export interface GameHistoryEntry {
   userChoice: Choice;
   computerChoice: Choice;
-  result: GameResult;
+  result: GameOutcome;
   timestamp: number;
 };
 
@@ -30,3 +29,11 @@ export interface Player {
   username: string;
   avatar?: string;
 };
+
+export interface ResultStyleProps {
+  resultType: GameOutcome;
+}
+
+
+
+

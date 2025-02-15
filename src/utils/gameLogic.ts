@@ -1,10 +1,10 @@
-import { Choice, GameResult } from '../types/game';
+import { Choice, GameOutcome } from '../types/game';
 import { CHOICES, WIN_MESSAGES } from '../constants/gameRules';
 
 export const determineWinner = (
   playerChoice: Choice,
   computerChoice: Choice
-): GameResult => {
+): GameOutcome => {
   if (playerChoice === computerChoice) return 'tie';
   return CHOICES[playerChoice.toUpperCase()].beats.includes(computerChoice)
     ? 'win'
@@ -19,7 +19,7 @@ export const generateComputerChoice = (): Choice => {
 export const getResultMessage = (
   playerChoice: Choice,
   computerChoice: Choice,
-  result: GameResult
+  result: GameOutcome
 ): string => {
   if (result === 'tie') return "It's a tie!";
   

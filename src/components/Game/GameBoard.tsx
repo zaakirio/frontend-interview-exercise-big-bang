@@ -1,11 +1,11 @@
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { PlayerChoice } from './PlayerChoice';
-import { GameResult } from './GameResult';
 import { GameHistory } from './GameHistory';
 import { ScoreBoard } from './ScoreBoard';
 import { useGameState } from '@/hooks/useGameState';
-import { Player } from '@/types/game';
+import type { Player } from '@/types/game';
+import { GameResult } from './Result/GameResult';
 
 interface GameBoardProps {
   player: Player;
