@@ -35,7 +35,6 @@ Each choice can defeat two other choices:
 ## Getting Started
 
 ### Installation
-### Prerequisites
 
 Make sure you have pnpm installed on your system. If not, you can install it with:
 
@@ -48,10 +47,9 @@ npm install -g pnpm
 pnpm install
 ```
 
-2. Install required shadcn components:
+2. Run Application:
 ```bash
-npx shadcn@canary init
-npx shadcn@canary add card button input alert avatar badge separator alert-dialog
+pnpm dev
 ```
 
 3. Start the development server:
