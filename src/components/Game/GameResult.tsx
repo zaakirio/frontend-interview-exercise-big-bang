@@ -1,23 +1,39 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Swords } from 'lucide-react';
+import { Swords, Trophy, Ban } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { CHOICES } from '@/constants/gameRules';
-import { Choice } from '@/types/game';
+import { Choice, GameResult as GameResultType } from '@/types/game';
+import { cn } from "@/lib/utils";
 
 interface GameResultProps {
   userChoice: Choice;
   computerChoice: Choice;
   result: string;
+  resultType: GameResultType;
+  playerName: string;
 }
 
 export const GameResult: React.FC<GameResultProps> = ({
   userChoice,
   computerChoice,
-  result
+  result,
+  resultType,
+  playerName
 }) => {
-  // Create a unique key for the entire result display
   const resultKey = `${userChoice}-${computerChoice}-${Date.now()}`;
+  
+  const isWin = resultType === 'win';
+  const isLoss = resultType === 'lose';
+  const isTie = resultType === 'tie';
+
+  const getResultIcon = () => {
+    if (isWin) return Trophy;
+    if (isLoss) return Ban;
+    return Swords;
+  };
+
+  const ResultIcon = getResultIcon();
 
   return (
     <AnimatePresence mode="wait">
@@ -28,11 +44,33 @@ export const GameResult: React.FC<GameResultProps> = ({
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.2 }}
       >
-        <Alert className="mb-8">
-          <AlertTitle>Game Result</AlertTitle>
+        <Alert className={cn(
+          "mb-8",
+          isWin && "border-green-500 bg-green-50",
+          isLoss && "border-red-500 bg-red-50",
+          isTie && "border-yellow-500 bg-yellow-50"
+        )}>
+          <AlertTitle className="flex items-center gap-2">
+            <ResultIcon className={cn(
+              "w-5 h-5",
+              isWin && "text-green-500",
+              isLoss && "text-red-500",
+              isTie && "text-yellow-500"
+            )} />
+            <span>{
+              isWin ? "Victory!" :
+              isLoss ? "Defeat!" :
+              "It's a Tie!"
+            }</span>
+          </AlertTitle>
           <AlertDescription>
             <motion.div 
-              className="text-xl font-semibold mb-4"
+              className={cn(
+                "text-xl font-semibold mb-4",
+                isWin && "text-green-700",
+                isLoss && "text-red-700",
+                isTie && "text-yellow-700"
+              )}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
@@ -51,7 +89,14 @@ export const GameResult: React.FC<GameResultProps> = ({
                     {CHOICES[userChoice.toUpperCase()].icon}
                   </span>
                 </motion.div>
-                <div className="text-sm">Your Choice</div>
+                <div className={cn(
+                  "flex items-center justify-center gap-2 text-sm font-medium",
+                  isWin && "text-green-600",
+                  isLoss && "text-red-600"
+                )}>
+                  <span role="img" aria-label="player">👤</span>
+                  {playerName}
+                </div>
               </div>
               
               <motion.div
@@ -67,7 +112,12 @@ export const GameResult: React.FC<GameResultProps> = ({
                   delay: 0.2
                 }}
               >
-                <Swords className="w-6 h-6" aria-hidden="true" />
+                <ResultIcon className={cn(
+                  "w-6 h-6",
+                  isWin && "text-green-500",
+                  isLoss && "text-red-500",
+                  isTie && "text-yellow-500"
+                )} aria-hidden="true" />
               </motion.div>
 
               <div className="text-center">
@@ -81,7 +131,14 @@ export const GameResult: React.FC<GameResultProps> = ({
                     {CHOICES[computerChoice.toUpperCase()].icon}
                   </span>
                 </motion.div>
-                <div className="text-sm">Computer's Choice</div>
+                <div className={cn(
+                  "flex items-center justify-center gap-2 text-sm font-medium",
+                  isWin && "text-red-600",
+                  isLoss && "text-green-600"
+                )}>
+                  <span role="img" aria-label="computer">💻</span>
+                  Computer
+                </div>
               </div>
             </div>
           </AlertDescription>

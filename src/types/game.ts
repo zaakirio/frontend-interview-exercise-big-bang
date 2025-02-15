@@ -12,6 +12,7 @@ export interface GameState {
   userChoice: Choice | null;
   computerChoice: Choice | null;
   result: string;
+  resultType: GameResult | null;
   scores: {
     user: number;
     computer: number;

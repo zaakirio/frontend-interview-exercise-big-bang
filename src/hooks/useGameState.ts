@@ -7,6 +7,7 @@ const initialState: GameState = {
   userChoice: null,
   computerChoice: null,
   result: '',
+  resultType: null,
   scores: {
     user: 0,
     computer: 0
@@ -21,11 +22,12 @@ export const useGameState = () => {
     const computerChoice = generateComputerChoice();
     const result = determineWinner(choice, computerChoice);
     const resultMessage = getResultMessage(choice, computerChoice, result);
-
+    
     setGameState(prev => ({
       userChoice: choice,
       computerChoice,
       result: resultMessage,
+      resultType: result,
       scores: {
         user: prev.scores.user + (result === 'win' ? 1 : 0),
         computer: prev.scores.computer + (result === 'lose' ? 1 : 0)
@@ -55,5 +57,3 @@ export const useGameState = () => {
     resetGame
   };
 };
-
-export default useGameState;
