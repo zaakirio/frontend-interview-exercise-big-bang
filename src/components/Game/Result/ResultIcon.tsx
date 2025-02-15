@@ -38,7 +38,7 @@ export const ResultIcon: React.FC<ResultIconProps> = ({ resultType, className })
         delay: 0.2
       }}
     >
-      <Icon className={cn("w-6 h-6", styles.icon, className)} aria-hidden="true" />
+      <Icon className={cn("w-9 h-9", styles.icon, className)} aria-hidden="true" />
     </motion.div>
   );
 };

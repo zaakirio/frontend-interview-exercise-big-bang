@@ -21,7 +21,7 @@ export const getResultMessage = (
   computerChoice: Choice,
   result: GameOutcome
 ): string => {
-  if (result === 'tie') return "It's a tie!";
+  if (result === 'tie') return "Nobody wins";
   
   if (result === 'win') {
     return WIN_MESSAGES[playerChoice][computerChoice as keyof typeof WIN_MESSAGES[Choice]];
