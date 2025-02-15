@@ -26,7 +26,7 @@ export const CHOICES: Record<string, GameChoice> = {
     beats: ['Scissors', 'Rock'],
     icon: '🖖'
   }
-} as const;
+};
 
 export const WIN_MESSAGES = {
   Scissors: {
@@ -49,4 +49,10 @@ export const WIN_MESSAGES = {
     Scissors: 'Spock smashes Scissors',
     Rock: 'Spock vaporizes Rock'
   }
-} as const;
+};
+
+export const RESULT_MESSAGES = {
+  win: "Victory!",
+  lose: "Defeat!",
+  tie: "It's a Tie!"
+};

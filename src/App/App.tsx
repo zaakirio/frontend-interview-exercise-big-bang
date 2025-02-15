@@ -1,5 +1,5 @@
+import { UsernameForm } from "@/components/Form/UsernameForm";
 import { GameBoard } from "@/components/Game/GameBoard";
-import { UsernameForm } from "@/components/Game/UsernameForm";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Player } from "@/types/game";
 

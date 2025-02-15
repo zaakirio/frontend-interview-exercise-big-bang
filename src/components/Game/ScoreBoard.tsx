@@ -3,8 +3,8 @@ import { Trophy, RefreshCw } from 'lucide-react';
 import { CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ResetConfirmation } from './ResetConfirmation';
 import type { Player } from '@/types/game';
+import { ResetDialog } from '../ResetDialog/ResetDialog';
 
 interface ScoreBoardProps {
   player: Player;
@@ -56,7 +56,7 @@ export const ScoreBoard: React.FC<ScoreBoardProps> = ({
         </div>
       </CardHeader>
 
-      <ResetConfirmation
+      <ResetDialog
         open={showResetConfirmation}
         onOpenChange={setShowResetConfirmation}
         onConfirm={handleReset}
